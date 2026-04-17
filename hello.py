@@ -1,4 +1,4 @@
-class Dog:
-    def __init__(self, name, breed):
-        self.name = name
-        self.breed = breed
+import pandas as pd
+
+df = pd.read_csv("orders.csv")
+print(df)
