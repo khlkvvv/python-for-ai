@@ -1,4 +1,49 @@
-import pandas as pd
+full_dot = '●'
+empty_dot = '○'
 
-df = pd.read_csv("orders.csv")
-print(df)
+def create_character(name, strength, intelligence, charisma):
+    if not isinstance(name, str):
+        return "The character name should be a string"
+    if name == "":
+        return "The character should have a name"
+    if len(name) > 10:
+        return "The character name is too long"
+    if ' ' in name:
+        return "The character name should not contain spaces"
+    if not isinstance(strength, int):
+        return "All stats should be integers"
+    if not isinstance(intelligence, int):
+        return "All stats should be integers"
+    if not isinstance(charisma, int):
+        return "All stats should be integers"
+    if strength < 1:
+        return "All stats should be no less than 1"
+    if intelligence < 1:
+        return "All stats should be no less than 1"
+    if charisma < 1:
+        return "All stats should be no less than 1"
+    if strength > 4:
+        return "All stats should be no more than 4"
+    if intelligence > 4:
+        return "All stats should be no more than 4"
+    if charisma > 4:
+        return "All stats should be no more than 4"
+    if strength + intelligence + charisma != 7:  # Changed from <= 7 to != 7
+        return "The character should start with 7 points"
+    
+    # If all validations pass, create the character display
+    result = name + "\n"
+    
+    # Strength line
+    result += "STR " + (full_dot * strength) + (empty_dot * (10 - strength)) + "\n"
+    
+    # Intelligence line
+    result += "INT " + (full_dot * intelligence) + (empty_dot * (10 - intelligence)) + "\n"
+    
+    # Charisma line
+    result += "CHA " + (full_dot * charisma) + (empty_dot * (10 - charisma))
+    
+    return result
+
+# Test the function
+print(create_character("ren", 2, 2, 3))
